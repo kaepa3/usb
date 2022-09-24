@@ -6,6 +6,9 @@ package usb
 
 // #cgo pkg-config: libusb-1.0
 // #include <libusb.h>
+// int set_debug(libusb_context * ctx, int level) {
+//   return libusb_set_option(ctx, LIBUSB_OPTION_LOG_LEVEL, level);
+// }
 import "C"
 import (
 	"fmt"
@@ -481,7 +484,7 @@ func (c *Context) me() *C.struct_libusb_context {
 }
 
 func (c *Context) SetDebug(level int) {
-	C.libusb_set_debug(c.me(), C.int(level))
+	C.set_debug(c.me(), C.int(level))
 }
 
 func (c *Context) Exit() {
